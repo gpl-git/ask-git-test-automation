@@ -3,5 +3,4 @@
 
     @git
     Scenario: Create a pull request
-      Given I added gitign
-
+      Given I added gi
