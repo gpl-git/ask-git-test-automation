@@ -3,5 +3,5 @@
 
     @git
     Scenario: Create a pull request
-      Given I added gitignore
+      Given I added git
 
