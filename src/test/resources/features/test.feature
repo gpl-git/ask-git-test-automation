@@ -1,3 +1,4 @@
+git branch
 @test
   Feature: Test
 
