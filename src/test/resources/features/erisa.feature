@@ -3,4 +3,4 @@
 
     @git
     Scenario: Create a pull request
-      Given I added g
+      Given I added
