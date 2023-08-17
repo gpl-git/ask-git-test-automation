@@ -29,5 +29,4 @@
       And I wait for 1 sec
       Then "Sample Quiz" is displayed on the list of quizzes
       And I delete "Sample Quiz"
-
       And I wait for 2 sec
