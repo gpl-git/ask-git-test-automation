@@ -23,5 +23,7 @@ Scenario: : Create a quiz
     And I click "Save" button
     And I wait for 1 sec
     Then "Title#" is displayed on the list of quizzes
-    And I wait for 5 sec
-    And I delete "Title#"
+    And I click on the quiz "Title#"
+    And I wait for 10 sec
+    And I click delete "Title#" quiz
+
