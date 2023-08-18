@@ -59,31 +59,27 @@ public class SingleChoiceStepDefs {
     public void iAddAQuestion() {
         getDriver().findElement(By.xpath("//mat-icon[text()='add_circle']")).click();
     }
-
     @When("I select {string} question")
     public void iSelectQuestion(String questionType) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q2')]/../../..//*[contains(text(),'Single')]")).click();
+        getDriver().findElement(By.xpath("//div[contains(text(), '"+questionType+"')]//preceding-sibling::div")).click();
     }
+
 
     @When("I type {string} into question field of {string}")
     public void iTypeIntoQuestionFieldOf(String questionText, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//*[@formcontrolname='question']")).sendKeys(questionText);
+   getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+questionNum+"')]/following::textarea[@formcontrolname='question']")).sendKeys(questionText);
 
     }
 
     @And("I type {string} into {string} option field of {string}")
     public void iTypeIntoOptionFieldOf(String optionText, String optionNum, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//*[@placeholder='"+optionNum+"*']")).sendKeys(optionText);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + questionNum + "')]//following::textarea[@placeholder='" + optionNum + "*']")).sendKeys(optionText);
     }
 
-    @When("I select {string} question in {string}")
-    public void iSelectQuestionIn(String questionType, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//*[contains(text(),'"+questionType+"')]")).click();
-    }
 
-    @When("I select {string} as a correct option in {string}")
+    @And("I select {string} as a correct option in {string}")
     public void iSelectAsACorrectOptionIn(String optionNum, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//*[@placeholder='"+optionNum+"*']/../../../../..//mat-radio-button")).click();
+        getDriver().findElement(By.xpath(" //mat-panel-title[contains(text(), '"+questionNum+"')]//following::textarea[@placeholder='"+optionNum+"*']//ancestor::mat-form-field/preceding-sibling::mat-radio-button")).click();
     }
 
     @Then("{string} is displayed on the list of quizzes")
@@ -93,16 +89,22 @@ public class SingleChoiceStepDefs {
             if (title.getText().contains(quizTitle)){
                 title.isDisplayed();
             }
-
         }
     }
 
     @And("I delete {string}")
     public void iDelete(String quizTitle) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]/../../..//span[contains(text(),'Delete')]")).click();
-        getDriver().findElement(By.xpath("//ac-modal-confirmation/..//span[contains(text(),'Delete')]")).click();
+    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
+    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+quizTitle+"')]//ancestor::mat-expansion-panel-header//following-sibling::div//button/span[text()='Delete']")).click();
+    getDriver().findElement(By.xpath("//ac-modal-confirmation/div/button/span[contains(text(), 'Delete')]")).click();
+            //findElement(By.xpath("//ac-modal-confirmation/div/button/span[contains(text(), 'Delete')]")).click();
+    //getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]/../../..//span[contains(text(),'Delete')]")).click();
+    //getDriver().findElement(By.xpath("//ac-modal-confirmation/..//span[contains(text(),'Delete')]")).click();
     }
+
+
 }
+
+
 
 
