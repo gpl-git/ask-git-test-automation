@@ -14,6 +14,7 @@ import io.cucumber.java.en.Given;
 
 public class SingleChoiceStepDefs {
     @Given("I open {string} page")
+
     public void iOpenPage(String url) {
         if(url.equals("login")){
             getDriver().get("http://ask-qa.portnov.com/#/login");
@@ -101,7 +102,7 @@ public class SingleChoiceStepDefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]/../../..//span[contains(text(),'Delete')]")).click();
         getDriver().findElement(By.xpath("//ac-modal-confirmation/..//span[contains(text(),'Delete')]")).click();
-
     }
+}
 
 
