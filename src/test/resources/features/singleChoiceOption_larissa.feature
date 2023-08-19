@@ -105,7 +105,7 @@ Feature: Single Choice Question - options
         And I click "Close" button
         And I wait for 1 sec
         And I click delete "Title#" quiz
-      @options16
+      @options6
       Scenario: Single Choice Question - 16 Options
         When I type "Question 1" into question field of "Q1"
         And I type "Option 1" into "Option 1" option field of "Q1"
