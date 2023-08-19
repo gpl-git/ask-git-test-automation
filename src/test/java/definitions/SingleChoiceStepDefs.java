@@ -79,10 +79,43 @@ public class SingleChoiceStepDefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + questionNum + "')]//following::textarea[@placeholder='" + optionNum + "*']")).sendKeys(optionText);
     }
 
+    @And("I add option")
+    public void iAddOption() {
+        getDriver().findElement(By.xpath("//span[contains(text(), 'Add Option')]")).click();
+    }
 
     @And("I select {string} as a correct option in {string}")
     public void iSelectAsACorrectOptionIn(String optionNum, String questionNum) {
         getDriver().findElement(By.xpath(" //mat-panel-title[contains(text(), '" + questionNum + "')]//following::textarea[@placeholder='" + optionNum + "*']//ancestor::mat-form-field/preceding-sibling::mat-radio-button")).click();
+    }
+
+    @When("I click on {string} gear button")
+    public void iClickOnGearButton(String optionNum) {
+        getDriver().findElement(By.xpath("//textarea[@placeholder='" + optionNum + "*']//following::button//*[contains(text(), 'settings')]")).click();
+    }
+
+    @Then("button is enabled")
+    public void buttonIsEnabled() {
+        boolean btnDisabled = false;
+        String actualAttribute = getDriver().findElement(By.xpath("//span[text()='Delete Option']")).getAttribute("disabled");
+        assert (actualAttribute.equals(String.valueOf(btnDisabled)));
+    }
+
+    @And("I delete the option")
+    public void iDeleteTheOption() {
+        getDriver().findElement(By.xpath("//span[text()='Delete Option']")).click();
+    }
+
+    @Then("button is disabled")
+    public void buttonIsDisabled() {
+        boolean btnDisabled = true;
+        String actualAttribute = getDriver().findElement(By.xpath("//span[text()='Delete Option']")).getAttribute("disabled");
+        assert (actualAttribute.equals(String.valueOf(btnDisabled)));
+    }
+
+    @And("I exit gear menu")
+    public void iExitGearMenu() {
+        getDriver().findElement(By.xpath("//mat-icon[text()='clear']")).click();
     }
 
     @Then("{string} is displayed on the list of quizzes")
@@ -97,22 +130,61 @@ public class SingleChoiceStepDefs {
 
     @And("I click on the quiz {string}")
     public void iClickOnTheQuiz(String quizTitle) {
-    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
     }
 
     @And("I click delete {string} quiz")
     public void iClickDeleteQuiz(String quizTitle) {
- getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+quizTitle+"')]//ancestor::mat-expansion-panel-header//following-sibling::div//button/span[text()='Delete']")).click();
-     getDriver().findElement(By.xpath("//ac-modal-confirmation/div/button/*[contains(text(), 'Delete')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + quizTitle + "')]//ancestor::mat-expansion-panel-header//following-sibling::div//button/span[text()='Delete']")).click();
+        getDriver().findElement(By.xpath("//ac-modal-confirmation/div/button/*[contains(text(), 'Delete')]")).click();
     }
 
-}
 
-
-    /*@And("I delete {string}")
-    public void iDelete(String quizTitle) {
-    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
-    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+quizTitle+"')]//ancestor::mat-expansion-panel-header//following-sibling::div//button/span[text()='Delete']")).click();
-    getDriver().findElement(By.xpath("//ac-modal-confirmation/div/button/*[contains(text(), 'Delete')]")).click();
+    @Then("text {string} appears in {string} option field")
+    public void textAppearsInOptionField(String optionText, String optionField) {
+        String actualField = getDriver().findElement(By.xpath("//textarea[@placeholder='" + optionField + "*']")).getText();
+        assert (actualField.equalsIgnoreCase(optionText));
     }
-     */
+
+    @And("I add {int} more options in {string}")
+    public void iAddMoreOptionsIn(int numberOfOptions, String questionNum) {
+        for (int i = 3; i <= numberOfOptions; i++) {
+            getDriver().findElement(By.xpath("//span[contains(text(), 'Add Option')]")).click();
+            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + questionNum + "')]//following::textarea[@placeholder='Option " + i + "*']")).sendKeys("Option " + i);
+        }
+    }
+
+
+    @Then("the quiz preview should contain {string}")
+    public void theQuizPreviewShouldContain(String numOptions) {
+        assert (getDriver().findElement(By.xpath("//ac-quiz-preview//*[contains(text(), '" + numOptions + "')]")).isDisplayed());
+    }
+
+
+    @And("I {string} the quiz {string}")
+    public void iTheQuiz(String btnPreview, String quizTitle) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + quizTitle + "')]//ancestor::mat-expansion-panel-header//following-sibling::div//button/span[text()='" + btnPreview + "']")).click();
+
+    }
+
+    @Then("the quiz preview should not contain {string}")
+    public void theQuizPreviewShouldNotContain(String numOptions) {
+        List<WebElement> options = getDriver().findElements(By.xpath("//ac-quiz-preview"));
+        for (WebElement option : options) {
+        if (option.getText().contains(numOptions)) {
+            assert option.isDisplayed();
+        }
+        }
+
+
+    //assert (!getDriver().findElement(By.xpath("//ac-quiz-preview//*[contains(text(), '" + numOptions + "')]")).isDisplayed());
+
+
+}  }
+
+
+
+
+
+
+
