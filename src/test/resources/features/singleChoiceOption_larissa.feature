@@ -124,3 +124,47 @@ Feature: Single Choice Question - options
         And I click "Close" button
         And I wait for 1 sec
         And I click delete "Title#" quiz
+        @options7
+        Scenario: Single Choice Question - Leave Options empty
+          When I type "Question 1" into question field of "Q1"
+          And I type "" into "Option 1" option field of "Q1"
+          And I type "" into "Option 2" option field of "Q1"
+          And I select "Option 1" as a correct option in "Q1"
+          And I click "Save" button
+          Then options error messages should be displayed
+          Then options error messages should say "This field is required"
+        @options8
+        Scenario: Single Choice Question - Options with min (1) ch-r
+          When I type "Question 1" into question field of "Q1"
+          And I type "a" into "Option 1" option field of "Q1"
+          And I type "b" into "Option 2" option field of "Q1"
+          And I select "Option 1" as a correct option in "Q1"
+          And I click "Save" button
+          And I wait for 1 sec
+          Then "Title#" is displayed on the list of quizzes
+          And I click on the quiz "Title#"
+          And I wait for 2 sec
+          And I "Preview" the quiz "Title#"
+          Then options should only contain "a" and "b"
+          And I wait for 1 sec
+          And I click "Close" button
+          And I wait for 1 sec
+          And I click delete "Title#" quiz
+        @options9
+        Scenario: Single Choice Question - Options with max (1000) ch-rs
+          When I type "Question 1" into question field of "Q1"
+          And I type 1000 characters into "Option 1" option field of "Q1"
+          And I type "R" into "Option 2" option field of "Q1"
+          And I select "Option 1" as a correct option in "Q1"
+          And I click "Save" button
+          And I wait for 1 sec
+          Then "Title#" is displayed on the list of quizzes
+          And I click on the quiz "Title#"
+          And I wait for 2 sec
+          And I "Preview" the quiz "Title#"
+          Then Option 1 should contain 1000 characters
+          And I wait for 1 sec
+          And I click "Close" button
+          And I wait for 1 sec
+          And I click delete "Title#" quiz
+

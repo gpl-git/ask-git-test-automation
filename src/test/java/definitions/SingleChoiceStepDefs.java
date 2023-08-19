@@ -4,15 +4,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
-import java.time.Duration;
 import java.util.List;
-
 import static support.TestContext.getDriver;
-import io.cucumber.java.en.Given;
+
 
 public class SingleChoiceStepDefs {
     @Given("I open {string} page")
@@ -174,13 +173,44 @@ public class SingleChoiceStepDefs {
         if (option.getText().contains(numOptions)) {
             assert option.isDisplayed();
         }
-        }
+      }
+    }
 
+    @Then("options error messages should be displayed")
+    public void optionsErrorMessagesShouldBeDisplayed() {
+        assert(getDriver().findElement(By.xpath("//mat-error"))).isDisplayed();
+    }
 
-    //assert (!getDriver().findElement(By.xpath("//ac-quiz-preview//*[contains(text(), '" + numOptions + "')]")).isDisplayed());
+    @Then("options error messages should say {string}")
+    public void optionsErrorMessagesShouldSay(String optionsErrorMessage) {
+    String actualErrorMessage = (getDriver().findElement(By.xpath("//mat-error")).getText());
+    assert (actualErrorMessage.equals(optionsErrorMessage));
+    }
 
+    @Then("options should only contain {string} and {string}")
+    public void optionsShouldOnlyContainAnd(String a, String b) {
+        List<WebElement>optionText = getDriver().findElements(By.xpath("//ac-quiz-preview//mat-radio-button"));
+        assert (String.valueOf(optionText).equals(a));
+        assert (String.valueOf(optionText).equals(b));
 
-}  }
+      }
+
+    @And("I type {int} characters into {string} option field of {string}")
+    public void iTypeCharactersIntoOptionFieldOf(int num, String optionNum, String questionNum) {
+        boolean useLetters = true;
+        boolean useNumbers = true;
+       String generatedString = RandomStringUtils.random(num, useLetters, useNumbers);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + questionNum + "')]//following::textarea[@placeholder='" + optionNum + "*']")).sendKeys(generatedString);
+
+    }
+
+    @Then("Option {int} should contain {int} characters")
+    public void optionShouldContainCharacters(int optionNum, int expectedSize) {
+     int actualSize = getDriver().findElement(By.xpath("//ac-quiz-preview//mat-radio-button[1]")).getText().length();
+        System.out.println(actualSize);
+        assert (actualSize == expectedSize);
+    }
+}
 
 
 
