@@ -103,5 +103,20 @@ public class QuizTotalQuestonsPSvStepDefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
     }
 
+    @And("I add {int} Textual questions ps")
+    public void iAddTextualQuestionsPs(int num) throws InterruptedException {
+        for (int i = 1; i <= num; i++) {
+            getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
+                    Thread.sleep(1000);
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[contains(text(),'Textual')]")).click();
+                    String xpath = "//*[contains(text(),'Q" + i + "')]/../../..//*[@placeholder='Question *']";
+                    getDriver().findElement(By.xpath(xpath)).sendKeys("Question " + i);
+        }
+    }
+
+    @Then("{string} assignment should contain {string} questions ps")
+    public void assignmentShouldContainQuestionsPs(String assignmentName, String numQuestions) {
+        String actualText = getDriver().findElement(By.xpath("//td[contains(text(),'"+assignmentName+"')]/..//td[contains(text(),'"+numQuestions+"')]")).getText();
+        assertThat(actualText).containsIgnoringCase(numQuestions);}
 }
 
