@@ -13,9 +13,11 @@ import org.junit.runner.RunWith;
         glue = {"definitions", "support"},
         tags = "@predefined" // same as VM option -Dcucumber..filter.tags="@predefined1 or @predefined2"
 )
+
 public class TestRunner {
     @BeforeClass
-    public static void setup() {
+    public static void setup()
+    {
     }
 
     @AfterClass

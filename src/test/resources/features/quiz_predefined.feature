@@ -1,4 +1,4 @@
-@quiz
+git checkout -b branch_name, ex. yourName@quiz
   Feature: Create a Quiz
 
    Background: 
