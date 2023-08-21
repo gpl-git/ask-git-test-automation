@@ -6,14 +6,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
+
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import static support.TestContext.getDriver;
 
 
-public class SingleChoiceStepDefs {
+public class SingleChoiceOptionStepDefs {
     @Given("I open {string} page")
 
     public void iOpenPage(String url) {

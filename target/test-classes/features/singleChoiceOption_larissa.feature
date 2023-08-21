@@ -163,7 +163,6 @@ Feature: Single Choice Question - options
           And I wait for 2 sec
           And I "Preview" the quiz "Title#"
           Then Option 1 should contain 1000 characters
-
           And I wait for 1 sec
           And I click "Close" button
           And I wait for 1 sec
