@@ -7,8 +7,7 @@ Feature: Creating Scenarios for Registration First Name
   Scenario: Steps for First name accepts alphanumeric and special characters.
     Given I navigate to "registration" page
     And I wait for 2 sec ss
-    When I type "abc123@$*" into first name field
-    And I wait for 2 sec
+    When I type "abcd123@$*" into first name field
     When I type "abc" into last name field
     When I type "abc@xyz.com" into email field ss
     And I wait for 2 sec
