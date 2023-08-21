@@ -149,7 +149,7 @@ Feature: Creating Scenarios for Registration First Name
     When I type "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" into first name field
     Then I wait for 1 sec
     When I type "A" into last name field
-    When I type "abc@xyz.com" into email field ss
+    When I type "abcd@xyz.com" into email field ss
     And I wait for 2 sec
     When I type "ABC" in the group code
     When I type "12345"in the password field
