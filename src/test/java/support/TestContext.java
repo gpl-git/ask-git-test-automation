@@ -1,6 +1,5 @@
 // Created by Viacheslav (Slava) Skryabin 04/01/2011
 package support;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Platform;
@@ -23,30 +22,24 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 public class TestContext {
-
     private static WebDriver driver;
-
     public static WebDriver getDriver() {
         return driver;
     }
-
     public static void initialize() {
-        initialize("chrome", "local", false);
+        initialize("chrome", "local", true, true);
     }
-
     public static void teardown() {
         driver.quit();
     }
-
-    public static void initialize(String browser, String testEnv, boolean isHeadless) {
+    public static void initialize(String browser, String testEnv, boolean isHeadless, boolean envLinux) {
         Dimension size = new Dimension(1920, 1080);
         Point position = new Point(0, 0);
         if (testEnv.equals("local")) {
             switch (browser) {
                 case "chrome":
-                    WebDriverManager.chromedriver().setup();
+                    WebDriverManager.chromedriver().browserVersion("113").setup();
                     Map<String, Object> chromePreferences = new HashMap<>();
                     chromePreferences.put("profile.default_content_settings.geolocation", 2);
                     chromePreferences.put("profile.default_content_settings.popups", 0);
@@ -69,6 +62,9 @@ public class TestContext {
                         chromeOptions.setHeadless(true);
                         chromeOptions.addArguments("--window-size=" + size.getWidth() + "," + size.getWidth());
                         chromeOptions.addArguments("--disable-gpu");
+                    }
+                    if (envLinux) {
+                        chromeOptions.setBinary("/usr/bin/chromium-browser");
                     }
                     ChromeDriverService service = new ChromeDriverService.Builder()
                             .withLogOutput(System.out)

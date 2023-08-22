@@ -6,7 +6,6 @@ import io.cucumber.java.en.Then;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
@@ -50,7 +49,7 @@ public class LoginPageStepdefs {
     @Then("I get a Authentication failed message mm")
     public void iGetAAuthenticationFailedMessageMm()
     {
-        assertThat(getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(), ‘Authentication failed’)]")).isDisplayed()).isTrue();
+        assertThat(getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'Authentication failed')]")).isDisplayed()).isTrue();
         //new WebDriverWait(getDriver(), 5, 100).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//simple-snack-bar[contains(text(), ‘Authentication failed’)]")));
     }
 
@@ -92,5 +91,7 @@ public class LoginPageStepdefs {
     {
         assertThat(getDriver().findElement(By.xpath("//*[@formcontrolname='password']")).getAttribute("type")).isEqualTo("password");
     }
+
+
 }
 

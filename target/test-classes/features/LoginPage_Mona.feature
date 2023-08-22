@@ -73,3 +73,5 @@
                Then I enter my "email" address in the email field and "password" in the password field mm
                And click on "Sign In" button mm
                Then password field needs to be masked
+
+        Scenario: Forgot password
