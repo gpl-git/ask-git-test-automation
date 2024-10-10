@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Iterator;
 import static org.assertj.core.api.Assertions.*;
 import static support.TestContext.getDriver;
+import org.openqa.selenium.Keys;
 
 
 public class PredefinedStepDefs {
@@ -221,5 +222,11 @@ public class PredefinedStepDefs {
     @When("I mouse over element with xpath {string}")
     public void iMouseOverElementWithXpath(String xpath) {
         new Actions(getDriver()).moveToElement(getDriver().findElement(By.xpath(xpath))).perform();
+    }
+
+    @When("I click button Enter")
+    public void iClickButtonEnter() {
+        getDriver().findElement(By.xpath("//body")).sendKeys(Keys.RETURN);
+
     }
 }
