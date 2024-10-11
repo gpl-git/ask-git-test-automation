@@ -255,3 +255,54 @@ Feature: Registration Demo - Email
     And I wait for 1 sec
     Then element with xpath "(//div[@class='mat-input-wrapper mat-form-field-wrapper'])[3]" should contain text "Should be a valid email address"
     And I wait for 1 sec
+
+
+  @email_invalid_16
+  Scenario Outline: Invalid Email addresses
+    When I type <emailValue> into element with xpath "//input[@formcontrolname='email']"
+    And I click on element with xpath "//span[contains(text(),'Register Me')]"
+    And I wait for 2 sec
+    Then element with xpath "(//div[contains(@class,'mat-input-subscript-wrapper')])[3]" should contain text "Should be a valid email address"
+    And I wait for 3 sec
+    Examples:
+      | emailValue     |
+#      | "asdf@gmail"  |
+      | "@domain.com" |
+#      | "asdgil@gmail.local" |
+      | "as,dgil@gmail.com"    |
+      |   "a@sdgil@gmail.com"     |
+      |      "asdgil@g#mail.com"  |
+      |         "asdgil.co"        |
+      |         "asd@gil..co"    |
+      |          "asd@gil.co "  |
+      |      "asd @ gil .co"     |
+      | "aa@gmail.aaqwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbndkh"  |
+      |     "a@gmail.aaqwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbndkh"  |
+      |   "a@aaqwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbndkh.com"  |
+      |    "aqwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbndkhaa@gmail.com"  |
+      |   " asd@gil.co" |
+      | "asdf@gmail." |
+
+  @email_valid_12
+  Scenario Outline: Happy Path
+    When I type <text> into element with xpath "//input[@formcontrolname='email']"
+    And I click on element with xpath "//span[contains(text(),'Register Me')]"
+    And I wait for 1 sec
+    Then element with xpath "//h4" should be displayed
+    Then element with xpath "//h4" should have text as "You have been Registered."
+    And I wait for 2 sec
+    Examples:
+      | text               |
+      | "abc@123.com" |
+      | "qwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbndkhaa@gmail.com"  |
+      | "a@aqwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbndkh.com"       |
+      | "a@gmail.aqwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbndkh"     |
+      | "adghavshbdjsjndksdnkmsdlsmdlmsdmsdsdsdsdsdsdsdsddsdssddd@gmail.aqwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbnh.com"  |
+      | "as!%&dgil@gmail.com"  |
+      | "asdgil@gmail.co"      |
+      | "asdgil@gmail.org"     |
+      | "werertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbndkhaa@gmail.com" |
+      | "a@qwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbndkh.com"      |
+      | "a@gmail.qwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbndkh"    |
+      | "dghavshbdjsjndksdnkmsdlsmdlmsdmsdsdsdsdsdsdsdsddsdssddd@gmail.aqwerertsdfadgshycvfdgtytvdfggfghyjvbgfftysrrenbsbnsdnejhdbnh.com" |
+
