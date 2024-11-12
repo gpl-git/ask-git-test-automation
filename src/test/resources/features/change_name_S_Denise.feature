@@ -1,4 +1,4 @@
-//change_username.feature
+#change_username.feature
 
 @ChangeUsername
 Feature: Change Username
@@ -20,7 +20,7 @@ Feature: Change Username
 
   @ChangeUsername1
   Scenario: Change valid username
-  // change name
+  # change name
     And I type "Denise Student" into element with xpath "//input[@formcontrolname='name']"
     Then I click on element with xpath "//span[@class='mat-button-wrapper' and text()='Change']"
     And I wait for 2 sec
@@ -34,7 +34,7 @@ Feature: Change Username
     Then element with xpath "//h3[contains(text(), 'Denise Bentsgoft')]" should be displayed
   @ChangeUsername2
   Scenario: empty username
-  // change name
+  # change name
     And I type "" into element with xpath "//input[@formcontrolname='name']"
     #Then I wait for 2 sec
     Then I hit enter key on element with xpath "//input[@formcontrolname='name']"
