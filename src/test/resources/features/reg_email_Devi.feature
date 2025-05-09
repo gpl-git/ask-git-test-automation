@@ -1,4 +1,4 @@
-reg_demo
+@reg_demo
 Feature: Registration -demo
 
   Background:
