@@ -59,4 +59,4 @@ Feature: Registration
       | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com |
       | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com |
       | user@gverylongdomainsegmentthatexceeds63characterslonglonglonglonggoo.com |
-      | user+name@example.com
+      | user+name@example.com |
