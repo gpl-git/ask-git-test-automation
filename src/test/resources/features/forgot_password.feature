@@ -12,7 +12,7 @@ Feature: Forgot Password
     When I type "usik1986@yahoo.com" into element with xpath "//*[@formcontrolname='email']"
     And I click on element with xpath "//*[@type='submit']"
     And I wait for 1 sec
-    And element with xpath "//h4']" should contain text "Your request is confirmed"
+    And element with xpath "//h4" should contain text "Your request is confirmed"
     And I wait for 3 sec
 
   @forg_invalid
