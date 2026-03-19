@@ -33,12 +33,14 @@ Feature: Password / Confirm Password Registration Test
     Then element with xpath "(//mat-error[@role='alert'])[1]" should contain text "This field is required"
     And element with xpath "(//mat-error[@role='alert'])[2]" should contain text "This field is required"
 
+  @password7
   Scenario: Maximum Length of 32 Characters
     And I type "12345678901234567890123456789012" into element with xpath "//input[@formcontrolname='password']"
     And I type "12345678901234567890123456789012" into element with xpath "//input[@formcontrolname='confirmPassword']"
     And I click on element with xpath "//button[@type='submit']"
     And I wait for 3 sec
     Then element with xpath "//h4[contains(text(), 'You have been Registered')]" should contain text "You have been Registered"
+
   @password4
   Scenario:  Exceeding Maximum Length (33 Characters)
     And I type "123456789012345678901234567890123" into element with xpath "//input[@formcontrolname='password']"
@@ -63,6 +65,7 @@ Feature: Password / Confirm Password Registration Test
     And I click on element with xpath "//button[@type='submit']"
     And element with xpath "//mat-error" should contain text "Entered passwords should match"
 
+  @password8
   Scenario: Passwords Must Match (Bug Test)
     And I type "12345" into element with xpath "//input[@formcontrolname='password']"
     And I type "12345" into element with xpath "//input[@formcontrolname='confirmPassword']"
