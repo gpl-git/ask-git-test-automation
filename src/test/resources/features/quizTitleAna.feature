@@ -1,5 +1,5 @@
 @QuizTitle @regression
-Feature: Demo Quiz
+Feature: Quiz Title
 
   Background:
     Given I open url "http://ask-qa.portnov.com/#/login"
