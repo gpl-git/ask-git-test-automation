@@ -77,4 +77,4 @@ Feature: Registration PageEmail Behavior
       |"preet_K@anc.com"                                                                                                                                |
       |"preetik@gnb.com"                                                                                                                            |
       |"preeti.t@test.exam.com"                                                                                                                     |
-      |"preeti!@#$%^&*()'.,_+@test.com"
+      |"preeti!@#$%^&*()'.,_+@test.com"|
